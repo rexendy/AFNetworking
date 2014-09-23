@@ -17,6 +17,8 @@
     
     // store json data
     NSDictionary *data;
+    
+    CGRect fullScreen ;
 }
 
 - (void)getDataFromAPI;

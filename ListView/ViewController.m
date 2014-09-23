@@ -12,6 +12,7 @@
 
 @end
 
+#define NAV_HEIGHT 44.0f
 static NSString * const baseURL = @"http://guarded-basin-2383.herokuapp.com/facts.json";
 @implementation ViewController
 
@@ -19,18 +20,33 @@ static NSString * const baseURL = @"http://guarded-basin-2383.herokuapp.com/fact
 - (void)loadView
 {
     
-    CGRect fullScreen = [[UIScreen mainScreen] applicationFrame];
+    fullScreen = [[UIScreen mainScreen] applicationFrame];
     
     self.view = [[UIView alloc] initWithFrame:fullScreen];
     [self.view setBackgroundColor:[UIColor yellowColor]];
     
     [self.navigationItem setTitle:@"Fact"];
     
+    //CGRect frame = CGRectMake(0, 0, fullScreen.size.width, fullScreen.size.height);
     tblList = [[UITableView alloc] initWithFrame:fullScreen];
     [tblList setDelegate:self];
     [tblList setDataSource:self];
     [self.view addSubview:tblList];
     
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    UIInterfaceOrientation currentOrientation = self.interfaceOrientation;
+    
+    if (currentOrientation == UIInterfaceOrientationLandscapeLeft || currentOrientation == UIInterfaceOrientationLandscapeRight) {
+        
+        [tblList setFrame:CGRectMake(fullScreen.origin.x, fullScreen.origin.y, fullScreen.size.height + NAV_HEIGHT, fullScreen.size.width)];
+    }
+    else
+    {
+        [tblList setFrame:CGRectMake(fullScreen.origin.x, fullScreen.origin.y, fullScreen.size.width, fullScreen.size.height)];
+    }
 }
 
 #pragma mark - TABLEVIEW
