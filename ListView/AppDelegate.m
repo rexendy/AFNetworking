@@ -13,6 +13,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    /* add a navigationcontroller to the root this view, then I added the viewcontroller to the root of navigation so when the app will run the first page will be the viewcontroller and there we can add the title of navigation. this navigation will will be used especially when we move to other controller and back to its previous controller*/
+    
+    mainView = [[ViewController alloc] init];
+    navController = [[UINavigationController alloc] initWithRootViewController:mainView];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self.window setRootViewController:navController];
     return YES;
 }
 							

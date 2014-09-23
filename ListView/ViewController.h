@@ -2,12 +2,22 @@
 //  ViewController.h
 //  ListView
 //
-//  Created by Neil Dy on 9/23/14.
+//  Created by Rexen Dy on 9/23/14.
 //  Copyright (c) 2014 Rexen Dy. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    //table view
+    UITableView *tblList;
+    
+    // store json data
+    NSDictionary *data;
+}
+
+- (void)getDataFromAPI;
 @end
